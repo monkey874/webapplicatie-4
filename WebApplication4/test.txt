@@ -1,0 +1,47 @@
+{
+  "Messages": [
+    {
+      "Type": "trafficLightState",
+      "Message": {
+        "Id": 6.1,
+        "State": "Red"
+      }
+    },
+    {
+      "Type": "trafficLightState",
+      "Message": {
+        "Id": 4.2,
+        "State": "Red"
+      }
+    },
+    {
+      "Type": "trafficLightState",
+      "Message": {
+        "Id": 3.1,
+        "State": "Red"
+      }
+    },
+    {
+      "Type": "trafficLightState",
+      "Message": {
+        "Id": 9.2,
+        "State": "Red"
+      }
+    },
+    {
+      "Type": "trafficLightState",
+      "Message": {
+        "Id": 2,
+        "State": "Green"
+      }
+    },
+    {
+      "Type": "trafficLightState",
+      "Message": {
+        "Id": 2.1,
+        "State": "Green"
+      }
+    }
+  ],
+  "Timestamp": "2026-05-11 14:13:29"
+}
