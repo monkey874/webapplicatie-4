@@ -31,7 +31,14 @@
     {
       "Type": "trafficLightState",
       "Message": {
-        "Id": 2,
+        "Id": 2.1,
+        "State": "Green"
+      }
+    },
+    {
+      "Type": "trafficLightState",
+      "Message": {
+        "Id": 8.1,
         "State": "Green"
       }
     },
@@ -43,5 +50,5 @@
       }
     }
   ],
-  "Timestamp": "2026-05-11 14:13:29"
+  "Timestamp": "2026-05-12 10:38:35"
 }
