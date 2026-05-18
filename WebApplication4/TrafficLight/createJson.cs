@@ -29,7 +29,7 @@ public class createJson
                 Message = new sendmessageContent
                 {
                     Id = item,
-                    State = "Red",
+                    State = "red",
                 }
             });
         }
@@ -42,7 +42,7 @@ public class createJson
                 Message = new sendmessageContent
                 {
                     Id = item,
-                    State = "Green",
+                    State = "green",
                 }
             });
         }

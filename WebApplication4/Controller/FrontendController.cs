@@ -37,7 +37,7 @@ public class testController : ControllerBase
         });
         
         Console.WriteLine(pretty);
-        string result = await post.SendAsync("http://172.16.48.32:5280/receive", pretty);
+        string result = await post.SendAsync("http://172.16.48.58:5501/post", pretty);
         
         return Ok(new { status = "received"  });
     }

@@ -41,7 +41,5 @@ public class vehiclePriority
             Console.WriteLine(vehiclePriority);
             Console.WriteLine(vehicleNameItem);
         }
-        
     }
-
 }
