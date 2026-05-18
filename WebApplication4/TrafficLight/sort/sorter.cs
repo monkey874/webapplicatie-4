@@ -1,6 +1,9 @@
 ﻿using System.Globalization;
 using System.Text.Json;
-using Stoplichtsysteem.models;
+using WebApplication4.TrafficLight;
+using System;
+using System.Collections.Generic;
+using WebApplication4.TrafficLight.models;
 
 namespace WebApplication4.TrafficLight.sort;
 
@@ -15,13 +18,23 @@ public class sorter
         List<string> typeVehicle = new List<string>();
         List<string> trafficeLightId = new List<string>();
         List<string> expectedArrival = new List<string>();  
-
-
+        
+        
         foreach (var i in data.Messages)
         {
             typeVehicle.Add(i.Type);
             trafficeLightId.Add(i.Message.Id);
             expectedArrival.Add(i.Message.ExpectedArrival);
+        }
+        
+
+        var defineClass = new vehiclePriority();
+
+        Console.Clear();
+        foreach (var i in (typeVehicle))
+        {
+            defineClass.checkVehiclePriority(i);
+            Console.WriteLine(i);
         }
 
         string[] test = trafficeLightId.ToArray();
@@ -49,7 +62,7 @@ public class sorter
             volgordeTrafficeLight.Add(trafficlight);
         }
 
-        var loader1 = new Stoplichtsysteem.JsonLoader.JsonLoader();
+        var loader1 = new JsonLoader.JsonLoader();
         var relation = loader1.LoadJsonFiles("relation.json");
         
         RootRelationshipTrafficeLight jsonfile = JsonSerializer.Deserialize<RootRelationshipTrafficeLight>(relation);

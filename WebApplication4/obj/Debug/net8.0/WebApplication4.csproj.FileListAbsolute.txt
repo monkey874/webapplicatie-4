@@ -33,3 +33,4 @@ C:\Users\RHJSa\RiderProjects\WebApplication4\WebApplication4\obj\Debug\net8.0\We
 C:\Users\RHJSa\RiderProjects\WebApplication4\WebApplication4\obj\Debug\net8.0\ref\WebApplication4.dll
 C:\Users\RHJSa\RiderProjects\WebApplication4\WebApplication4\obj\Debug\net8.0\WebApplication4.sourcelink.json
 C:\Users\RHJSa\RiderProjects\WebApplication4\WebApplication4\bin\Debug\net8.0\relation.json
+C:\Users\RHJSa\RiderProjects\WebApplication4\WebApplication4\bin\Debug\net8.0\vechileInfo.json

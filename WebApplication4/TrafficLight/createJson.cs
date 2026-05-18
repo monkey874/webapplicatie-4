@@ -1,5 +1,5 @@
 ﻿using System.Text.Json;
-using Stoplichtsysteem.models;
+using WebApplication4.TrafficLight.models;
 using WebApplication4.TrafficLight.sort;
 
 namespace WebApplication4.TrafficLight;

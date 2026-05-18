@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿namespace WebApplication4.Controller;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Text.Json;
 using WebApplication4.TrafficLight.sort;
@@ -6,11 +7,9 @@ using WebApplication4.TrafficLight;
 using WebApplication4;
 using WebApplication4;
 using System.IO;
-using Stoplichtsysteem;
 using System;
 using WebApplication4.TrafficLight;
 
-namespace WebApplication4.Controller;
 
 [ApiController]
 [Route("[controller]")]
@@ -19,6 +18,7 @@ public class testController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Receive([FromBody] object data)
     {
+        Console.WriteLine("gebeurt er iets");
         var post = new PostRequest();
      
         var ontvangen = new sorter();
@@ -37,7 +37,7 @@ public class testController : ControllerBase
         });
         
         Console.WriteLine(pretty);
-        string? result = await post.SendAsync("http://172.16.48.236:5280/receive", pretty);
+        string result = await post.SendAsync("http://172.16.48.32:5280/receive", pretty);
         
         return Ok(new { status = "received"  });
     }
@@ -46,6 +46,7 @@ public class testController : ControllerBase
     [HttpGet]
     public IActionResult GetStatus()
     {
+        Console.WriteLine("gebeurt er iets");
         var jsondata = new onthoud_json();
         string test = jsondata.readFile();
         return Ok(new { test });

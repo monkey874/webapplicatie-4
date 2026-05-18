@@ -1,5 +1,4 @@
-﻿using System.IO;
-namespace Stoplichtsysteem.JsonLoader
+﻿namespace WebApplication4.TrafficLight.JsonLoader
 {
     public class JsonLoader
     {

@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using WebApplication4;
 
-
 var builder = WebApplication.CreateBuilder(args);
 
 

@@ -1,0 +1,26 @@
+﻿{
+  "vehicleInfo" : [
+    {
+      "vehicleName": "vehicleWaiting",
+      "vehiclePriority": "low"
+    },
+    {
+      "vehicleName": "busWaiting",
+      "vehiclePriority": "low"
+    },
+    {
+      "vehicleName": "pedestrianWaiting",
+      "vehiclePriority": "low"
+    },
+    {
+      "vehicleName": "trainApproach",
+      "vehiclePriority": "hard"
+    },
+    {
+      "vehicleName": "emergencyVehicleApproach",
+      "vehiclePriority": "hard"
+    }
+  ]
+}
+        
+

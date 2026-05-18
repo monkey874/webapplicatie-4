@@ -1,9 +1,6 @@
-﻿namespace WebApplication4;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using WebApplication4;
-using System.IO;
+﻿using Microsoft.AspNetCore.Mvc;
 
+namespace WebApplication4.Controller;
 
 [ApiController]
 [Route("[controller]")]
@@ -12,6 +9,7 @@ public class ReceiveController : ControllerBase
     [HttpPost]
     public IActionResult Receive([FromBody] object data)
     {
+        Console.WriteLine("gebeurt er iets 1");
         Console.WriteLine("Ontvangen JSON:");
         Console.WriteLine(data);
         var jsondata = new onthoud_json();
@@ -24,6 +22,7 @@ public class ReceiveController : ControllerBase
     [HttpGet]
     public IActionResult GetStatus()
     {
+        Console.WriteLine("gebeurt er iets");
         var jsondata = new onthoud_json();
         string test = jsondata.readFile();
         return Ok(new { test });

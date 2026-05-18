@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
-using System.Collections.Generic;
-namespace Stoplichtsysteem.models;
+
+namespace WebApplication4.TrafficLight.models;
 
 
     public class RootRelationshipTrafficeLight   
