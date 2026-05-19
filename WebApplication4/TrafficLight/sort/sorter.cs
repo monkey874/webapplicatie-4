@@ -22,9 +22,9 @@ public class sorter
         
         foreach (var i in data.Messages)
         {
-            typeVehicle.Add(i.Type);
-            trafficeLightId.Add(i.Message.Id);
-            expectedArrival.Add(i.Message.ExpectedArrival);
+            typeVehicle.Add(i.type);
+            trafficeLightId.Add(i.message.Id);
+            expectedArrival.Add(i.message.ExpectedArrival);
         }
         
 

@@ -1,5 +1,7 @@
 ﻿using System.Text.Json;
+using System.Collections.Generic;
 using WebApplication4.TrafficLight.models;
+using System;
 using WebApplication4.TrafficLight.sort;
 
 namespace WebApplication4.TrafficLight;
@@ -16,33 +18,33 @@ public class createJson
         
         var data = new RootSendMessages
         {
-            Timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
-            Messages = new List<sendMessages>()
+            timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+            messages = new List<sendMessages>()
         };
         
         
         foreach (var item in trafficeLightOff)
         {
-            data.Messages.Add(new sendMessages()
+            data.messages.Add(new sendMessages()
             {
-                Type = "trafficLightState",
-                Message = new sendmessageContent
+                type = "trafficLightState",
+                message = new sendmessageContent
                 {
-                    Id = item,
-                    State = "red",
+                    id = item,
+                    state = "red",
                 }
             });
         }
         
         foreach (var item in trafficeLightOn)
         {
-            data.Messages.Add(new sendMessages()
+            data.messages.Add(new sendMessages()
             {
-                Type = "trafficLightState",
-                Message = new sendmessageContent
+                type = "trafficLightState",
+                message = new sendmessageContent
                 {
-                    Id = item,
-                    State = "green",
+                    id = item,
+                    state = "green",
                 }
             });
         }

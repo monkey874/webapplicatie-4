@@ -1,5 +1,7 @@
 ﻿namespace WebApplication4.TrafficLight;
-
+using System;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 public class ApiClient
 {

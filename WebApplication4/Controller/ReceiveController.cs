@@ -1,5 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-
+using System.Text.Json;
+using System;
+using System.Threading.Tasks;
+using WebApplication4.TrafficLight.sort;
+using WebApplication4.TrafficLight;
+using WebApplication4;
 namespace WebApplication4.Controller;
 
 [ApiController]
@@ -7,15 +12,31 @@ namespace WebApplication4.Controller;
 public class ReceiveController : ControllerBase
 {
     [HttpPost]
-    public IActionResult Receive([FromBody] object data)
+    public async Task<IActionResult> Receive([FromBody] object data)
+
     {
-        Console.WriteLine("gebeurt er iets 1");
-        Console.WriteLine("Ontvangen JSON:");
-        Console.WriteLine(data);
-        var jsondata = new onthoud_json();
-        string jsonData = data.ToString();
-        jsondata.riteFile(jsonData);
-        return Ok(new { status = "received", data });
+        
+        var post = new PostRequest();
+     
+        var ontvangen = new sorter();
+        var (of, on ) = ontvangen.Laod(data);
+        
+        double[] trafficeLightOff = of.ToArray();
+        double[] trafficeLightOn = on.ToArray();
+        var test = new createJson();
+        
+        string json = test.generateJsonStructure(trafficeLightOff, trafficeLightOn);
+        
+        var obj = JsonSerializer.Deserialize<object>(json);
+        var pretty = JsonSerializer.Serialize(obj, new JsonSerializerOptions
+        {
+            WriteIndented = true
+        });
+        
+        Console.WriteLine(pretty);
+        string result = await post.SendAsync("http://172.16.48.79:5280/receive", pretty);
+        
+        return Ok(new { status = "received"  });
     }
 
    
