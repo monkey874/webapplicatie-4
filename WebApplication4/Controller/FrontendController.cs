@@ -23,23 +23,35 @@ public class testController : ControllerBase
         var post = new PostRequest();
      
         var ontvangen = new sorter();
-        var (of, on ) = ontvangen.Laod(data);
-        
-        double[] trafficeLightOff = of.ToArray();
-        double[] trafficeLightOn = on.ToArray();
-        var test = new createJson();
-        
-        string json = test.generateJsonStructure(trafficeLightOff, trafficeLightOn);
-        
-        var obj = JsonSerializer.Deserialize<object>(json);
-        var pretty = JsonSerializer.Serialize(obj, new JsonSerializerOptions
+        var (on, of) = ontvangen.Laod(data);
+        Console.WriteLine("vanaf hier");
+        foreach (var I in of)
         {
-            WriteIndented = true
-        });
+            var (
+                trafficLightsNames1,
+                TrafficLightGreenTime,
+                trafficLightsRelationshipOff,
+                trafficeLightsRelationshipOn
+            ) = ontvangen.generatorSort(data, I);
+            
+            double[] trafficeLightOff = trafficLightsRelationshipOff.ToArray();
+            double[] trafficeLightOn = trafficeLightsRelationshipOn.ToArray();
+            
+            var test = new createJson();
         
-        Console.WriteLine(pretty);
-        string result = await post.SendAsync("http://172.16.48.58:5501/post", pretty);
+            string json = test.generateJsonStructure(trafficeLightOff, trafficeLightOn);
         
+            var obj = JsonSerializer.Deserialize<object>(json);
+            var pretty = JsonSerializer.Serialize(obj, new JsonSerializerOptions
+            {
+                WriteIndented = true
+            });
+        
+            Console.WriteLine(pretty);
+            string result = await post.SendAsync("http://172.16.48.5dd8:5501/post", pretty);
+        }
+        
+       
         return Ok(new { status = "received"  });
     }
 

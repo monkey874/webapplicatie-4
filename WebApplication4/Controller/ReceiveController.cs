@@ -15,7 +15,7 @@ public class ReceiveController : ControllerBase
     public async Task<IActionResult> Receive([FromBody] object data)
 
     {
-        
+        /*
         var post = new PostRequest();
      
         var ontvangen = new sorter();
@@ -36,6 +36,7 @@ public class ReceiveController : ControllerBase
         Console.WriteLine(pretty);
         string result = await post.SendAsync("http://172.16.48.79:5280/receive", pretty);
         
+        */
         return Ok(new { status = "received"  });
     }
 
