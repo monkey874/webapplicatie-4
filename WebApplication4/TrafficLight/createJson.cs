@@ -8,7 +8,7 @@ namespace WebApplication4.TrafficLight;
 
 public class createJson
 {
-    public string generateJsonStructure(double[] trafficeLightOff, double[] trafficeLightOn )
+    public string generateJsonStructure(double[] trafficeLightOff,  string trafficeLightOn )
     {
         
         var option = new JsonSerializerOptions()
@@ -31,11 +31,11 @@ public class createJson
                 message = new sendmessageContent
                 {
                     id = item,
-                    state = "red",
+                    state = "green",
                 }
             });
         }
-        
+
         foreach (var item in trafficeLightOn)
         {
             data.messages.Add(new sendMessages()
@@ -44,10 +44,11 @@ public class createJson
                 message = new sendmessageContent
                 {
                     id = item,
-                    state = "green",
+                    state = "red",
                 }
             });
         }
+        
 
         string json = JsonSerializer.Serialize(data, option);
         return json;

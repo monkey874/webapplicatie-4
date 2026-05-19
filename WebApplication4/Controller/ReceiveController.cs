@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿        /*
+using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using System;
 using System.Threading.Tasks;
@@ -15,11 +16,10 @@ public class ReceiveController : ControllerBase
     public async Task<IActionResult> Receive([FromBody] object data)
 
     {
-        
         var post = new PostRequest();
      
         var ontvangen = new sorter();
-        var (of, on ) = ontvangen.Laod(data);
+        var (of, on ) = ontvangen.GeneratePerTrafficLight(data);
         
         double[] trafficeLightOff = of.ToArray();
         double[] trafficeLightOn = on.ToArray();
@@ -34,7 +34,7 @@ public class ReceiveController : ControllerBase
         });
         
         Console.WriteLine(pretty);
-        string result = await post.SendAsync("http://172.16.48.79:5280/receive", pretty);
+        string result = await post.SendAsync("http://172.16.48.79:5280", pretty);
         
         return Ok(new { status = "received"  });
     }
@@ -48,5 +48,6 @@ public class ReceiveController : ControllerBase
         string test = jsondata.readFile();
         return Ok(new { test });
     }
+    
 }
-
+*/

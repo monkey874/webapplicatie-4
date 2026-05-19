@@ -9,24 +9,24 @@ namespace WebApplication4.TrafficLight.sort;
 
 public class sorter
 {
-    public (List<double> off, List<double> on) Laod(object incomingJsonobject)
+    public (List<String> volgordeTrafficeLight, List<string> trafficLightNames) Laod(object incomingJsonobject)
     {
         var incomingjsonobject = incomingJsonobject.ToString();
         RootGetMessages data = JsonSerializer.Deserialize<RootGetMessages>(incomingjsonobject);
-        
+
 
         List<string> typeVehicle = new List<string>();
         List<string> trafficeLightId = new List<string>();
-        List<string> expectedArrival = new List<string>();  
-        
-        
+        List<string> expectedArrival = new List<string>();
+
+
         foreach (var i in data.Messages)
         {
             typeVehicle.Add(i.type);
             trafficeLightId.Add(i.message.Id);
             expectedArrival.Add(i.message.ExpectedArrival);
         }
-        
+
 
         var defineClass = new vehiclePriority();
 
@@ -64,7 +64,7 @@ public class sorter
 
         var loader1 = new JsonLoader.JsonLoader();
         var relation = loader1.LoadJsonFiles("relation.json");
-        
+
         RootRelationshipTrafficeLight jsonfile = JsonSerializer.Deserialize<RootRelationshipTrafficeLight>(relation);
 
         List<string> trafficLightNames = [];
@@ -79,13 +79,31 @@ public class sorter
         List<double> trafficeLightsOn = new List<double>();
         List<double> trafficeLightsOff = new List<double>();
 
-        for (int i = 0; i < volgordeTrafficeLight.Count; i++)
-        {
-            if (trafficLightNames.Contains(volgordeTrafficeLight[i]))
-            {
-                double trafficlightid = double.Parse(volgordeTrafficeLight[i], CultureInfo.InvariantCulture);
+        
+        return (volgordeTrafficeLight, trafficLightNames );
+    }
 
-                var group = jsonfile.RelationshipTrafficLights.FirstOrDefault(x => x.TrafficLight == trafficlightid);
+    public (List<double> off, List<double> on) GeneratePerTrafficLight( object incomingJsonobject)
+    {   var loader1 = new JsonLoader.JsonLoader();
+        var relation = loader1.LoadJsonFiles("relation.json");
+
+        RootRelationshipTrafficeLight jsonfile = JsonSerializer.Deserialize<RootRelationshipTrafficeLight>(relation);
+
+        var data = Laod(incomingJsonobject);
+        var listTrafficlight =  data.volgordeTrafficeLight;
+        var listTrafficlightname = data.trafficLightNames;
+        
+        List<double> trafficeLightsOn = new List<double>();
+        List<double> trafficeLightsOff = new List<double>();
+
+        for (int i = 0; i < listTrafficlight.Count; i++)
+        {
+            if (listTrafficlightname.Contains(listTrafficlight[i]))
+            {
+                double trafficlightid = double.Parse(listTrafficlight[i], CultureInfo.InvariantCulture);
+
+                var group = jsonfile.RelationshipTrafficLights.FirstOrDefault(x =>
+                    x.TrafficLight == trafficlightid);
                 if (group != null)
                 {
                     trafficeLightsOn.AddRange(group.RelationshipOn);
@@ -93,9 +111,7 @@ public class sorter
                 }
             }
         }
+
         return (trafficeLightsOff, trafficeLightsOn);
     }
-    
-
-  
 }

@@ -1,4 +1,7 @@
-﻿namespace WebApplication4.Controller;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Globalization;
+namespace WebApplication4.Controller;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Text.Json;
@@ -25,21 +28,30 @@ public class testController : ControllerBase
         var ontvangen = new sorter();
         var (of, on ) = ontvangen.Laod(data);
         
-        double[] trafficeLightOff = of.ToArray();
-        double[] trafficeLightOn = on.ToArray();
-        var test = new createJson();
         
-        string json = test.generateJsonStructure(trafficeLightOff, trafficeLightOn);
-        
-        var obj = JsonSerializer.Deserialize<object>(json);
-        var pretty = JsonSerializer.Serialize(obj, new JsonSerializerOptions
+        var trafficeLightOff = of;
+        var trafficeLightOn = on;
+        foreach (var i in trafficeLightOff)
         {
-            WriteIndented = true
-        });
+
+            List<double> trafficLightIntOff =
+                trafficeLightOff.Select(s => double.Parse(s, CultureInfo.InvariantCulture)).ToList();
+            List<double> trafficeLightIntOn = trafficeLightOn.Select(double.Parse).ToList();
+            
+            var test = new createJson();
+            
+            string json = test.generateJsonStructure(trafficLightIntOff.ToArray(), i);
+            
+            var obj = JsonSerializer.Deserialize<object>(json);
+            var pretty = JsonSerializer.Serialize(obj, new JsonSerializerOptions
+            {
+                WriteIndented = true
+            });
+            
+            Console.WriteLine(pretty);
+            string result = await post.SendAsync("http://172.16.4", pretty);
         
-        Console.WriteLine(pretty);
-        string result = await post.SendAsync("http://172.16.48.58:5501/post", pretty);
-        
+        }
         return Ok(new { status = "received"  });
     }
 
