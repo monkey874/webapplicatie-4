@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using WebApplication4;
+using WebApplication4.TrafficLight;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,7 +32,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+
+var worker = new worker();
+_ = worker.StartAsync();
 app.MapControllers();
 app.Run();
-
 

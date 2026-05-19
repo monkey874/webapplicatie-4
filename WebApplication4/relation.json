@@ -2,7 +2,7 @@
   "RelationshipTrafficLights": [
     {
       "traffic light": 8.1,
-      "TrafficLightGreenTime" : 5,
+      "TrafficLightGreenTime" : 25,
       "RelationshipOff": [
         6.1,
         4.2
@@ -14,7 +14,7 @@
     },
     {
       "traffic light": 4.1,
-      "TrafficLightGreenTime" : 5,
+      "TrafficLightGreenTime" : 15,
       "RelationshipOff": [
         3.1,
         9.2
