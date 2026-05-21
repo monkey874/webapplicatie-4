@@ -4,20 +4,16 @@ using WebApplication4.TrafficLight.models;
 
 namespace WebApplication4.TrafficLight;
 
-public class createJson
+public class CreateJson
 {
-    public string generateJsonStructure(double[] trafficeLightOff, double[] trafficeLightOn )
+    public static string GenerateJsonStructure(double[] trafficeLightOff, double[] trafficeLightOn )
     {
         
-        var option = new JsonSerializerOptions()
-        {
-            WriteIndented = true
-        };
-        
+
         var data = new RootSendMessages
         {
             timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
-            messages = new List<sendMessages>()
+            messages = []
         };
         
         
@@ -46,12 +42,13 @@ public class createJson
                 }
             });
         }
+        
+        var option = new JsonSerializerOptions
+        {
+            WriteIndented = true
+        };
 
-        string json = JsonSerializer.Serialize(data, option);
+        var json = JsonSerializer.Serialize(data, option);
         return json;
     }
-    
-
-  
-    
 }
