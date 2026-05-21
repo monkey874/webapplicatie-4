@@ -1,8 +1,6 @@
 ﻿using System.Text.Json;
-using System.Collections.Generic;
 using WebApplication4.TrafficLight.models;
-using System;
-using WebApplication4.TrafficLight.sort;
+
 
 namespace WebApplication4.TrafficLight;
 

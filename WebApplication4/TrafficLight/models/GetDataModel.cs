@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-namespace WebApplication4.TrafficLight.models;
+﻿namespace WebApplication4.TrafficLight.models;
 public class RootGetMessages
 {
     public required List<GetMessages> Messages { get; init; }

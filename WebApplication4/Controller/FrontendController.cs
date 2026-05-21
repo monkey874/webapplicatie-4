@@ -1,4 +1,5 @@
-﻿using WebApplication4.TrafficLight.Timer;
+﻿using Microsoft.AspNetCore.Mvc;
+using WebApplication4.TrafficLight;
 
 namespace WebApplication4.Controller;
 using Microsoft.AspNetCore.Mvc;

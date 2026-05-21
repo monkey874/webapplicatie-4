@@ -1,10 +1,5 @@
 ﻿using System.Globalization;
 using System.Text.Json;
-using WebApplication4.TrafficLight;
-using System;
-using System.Linq;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using WebApplication4.TrafficLight.models;
 
 namespace WebApplication4.TrafficLight.sort;

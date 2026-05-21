@@ -1,5 +1,3 @@
-using Microsoft.AspNetCore.Builder;
-using WebApplication4;
 using WebApplication4.TrafficLight;
 
 var builder = WebApplication.CreateBuilder(args);
