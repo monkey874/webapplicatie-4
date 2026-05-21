@@ -2,10 +2,9 @@
 {
     public class JsonLoader
     {
-        public string LoadJsonFiles(string jsonFile)
+        public static string LoadJsonFiles(string jsonFile)
         {
-            var file = jsonFile;
-            var json = File.ReadAllText(file);
+            var json = File.ReadAllText(jsonFile);
             return json;
         }
     }
