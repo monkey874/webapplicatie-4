@@ -1,9 +1,8 @@
-﻿namespace WebApplication4.Debuger;
+﻿namespace WebApplication4.custumDebugger;
 
 public class Debugger
 {
     public required List<DebuggerInfo> DebuggerInfo { get; init; }
-        
 }
 
 public class DebuggerInfo
