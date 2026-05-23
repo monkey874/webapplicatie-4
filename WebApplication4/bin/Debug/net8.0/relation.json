@@ -2,7 +2,7 @@
   "RelationshipTrafficLights": [
     {
       "traffic light": 8.1,
-      "TrafficLightGreenTime" : 25,
+      "TrafficLightGreenTime" : 30,
       "RelationshipOff": [
         6.1,
         4.2
@@ -14,29 +14,31 @@
     },
     {
       "traffic light": 4.1,
-      "TrafficLightGreenTime" : 15,
+      "TrafficLightGreenTime" : 30,
       "RelationshipOff": [
         3.1,
         9.2
       ],
       "RelationshipOn": [
-        2.1
+        2.1,
+        4.1
       ]
     },
     {
       "traffic light": 9.1,
-      "TrafficLightGreenTime" : 5,
+      "TrafficLightGreenTime" : 30,
       "RelationshipOff": [
         8.1,
         2.2
       ],
       "RelationshipOn": [
-        1.1
+        1.1,
+        9.1
       ]
     },
     {
       "traffic light": 6.1,
-      "TrafficLightGreenTime" : 5,
+      "TrafficLightGreenTime" : 30,
       "RelationshipOff": [
         8.1,
         2.2
@@ -48,7 +50,7 @@
     },
     {
       "traffic light": 4.1,
-      "TrafficLightGreenTime" : 5,
+      "TrafficLightGreenTime" : 30,
       "RelationshipOff": [
         8.1,
         2.2
@@ -62,7 +64,7 @@
     },
     {
       "traffic light": 2.1,
-      "TrafficLightGreenTime" : 5,
+      "TrafficLightGreenTime" : 30,
       "RelationshipOff": [
         8.1,
         2.2
@@ -76,6 +78,7 @@
     },
     {
       "traffic light": 3.1,
+      "TrafficLightGreenTime" : 30,
       "RelationshipOff": [
         8.1,
         2.2

@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using System.Globalization;
 using WebApplication4.TrafficLight.models;
 
 
@@ -24,7 +25,8 @@ public class CreateJson
                 type = "trafficLightState",
                 message = new sendMessageContent
                 {
-                    id = item,
+                    id = item.ToString(CultureInfo.InvariantCulture),
+
                     state = "red",
                 }
             });
@@ -37,7 +39,7 @@ public class CreateJson
                 type = "trafficLightState",
                 message = new sendMessageContent
                 {
-                    id = item,
+                    id = item.ToString(CultureInfo.InvariantCulture),
                     state = "green",
                 }
             });

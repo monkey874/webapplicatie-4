@@ -19,6 +19,8 @@ public class Worker
                 var post = new PostRequest();
                 var ontvangen = new Sorter();
                 var (on, of) = Sorter.Laod(data);
+                
+                
                 foreach (var I in of)
                 {
                     var (
@@ -30,11 +32,10 @@ public class Worker
 
                     var trafficeLightOff = trafficLightsRelationshipOff.ToArray();
                     var trafficeLightOn = trafficeLightsRelationshipOn.ToArray();
-
-                    var test = new CreateJson();
+                    
 
                     var json = CreateJson.GenerateJsonStructure(trafficeLightOff, trafficeLightOn);
-                    Console.WriteLine(json);
+                    
                     var obj = JsonSerializer.Deserialize<object>(json);
                     var pretty = JsonSerializer.Serialize(obj, new JsonSerializerOptions
                     {
@@ -45,7 +46,8 @@ public class Worker
                     Console.WriteLine(pretty);
                     var result = await post.SendAsync("172.16.48.188", pretty);
 
-
+                    
+                    Console.WriteLine("GreenTime gevonden: " + TrafficLightGreenTime[0]);
                     await Task.Delay(TrafficLightGreenTime[0] * 1000);
                 }
             }

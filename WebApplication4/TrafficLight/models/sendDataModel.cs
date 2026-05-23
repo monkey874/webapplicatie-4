@@ -17,6 +17,6 @@ namespace WebApplication4.TrafficLight.models;
 
     public class sendMessageContent
     {
-        public required double id { get; init; }
+        public required string id { get; init; }
         public required string state { get; init; }
     }

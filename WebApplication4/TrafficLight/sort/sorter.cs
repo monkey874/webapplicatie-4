@@ -14,6 +14,8 @@ public class Sorter
         Debug.Assert(incomingjsonobject != null, nameof(incomingjsonobject) + " != null");
         var data = JsonSerializer.Deserialize<RootGetMessages>(incomingjsonobject);
         
+     
+
 
         List<string> typeVehicle = [];
         List<string> trafficeLightId = [];
@@ -75,7 +77,10 @@ public class Sorter
         var jsonfile = JsonSerializer.Deserialize<RootRelationshipTrafficeLight>(relation);
         
 
-        var group = jsonfile?.RelationshipTrafficLights.FirstOrDefault(x => x.TrafficLight == double.Parse(trafficid, CultureInfo.InvariantCulture));
+        var normalized = trafficid.Replace(',', '.');
+
+        var group = jsonfile?.RelationshipTrafficLights
+            .FirstOrDefault(x => x.TrafficLight == double.Parse(normalized, CultureInfo.InvariantCulture));
 
 
         if (group == null)
@@ -85,6 +90,7 @@ public class Sorter
                 trafficLightsRelationshipOff,
                 trafficeLightsRelationshipOn
             );
+       
         trafficLightsNames.Add(group.TrafficLight);
         trafficLightGreenTime.Add(group.TrafficLightGreenTime);
         trafficeLightsRelationshipOn.AddRange(group.RelationshipOn);
