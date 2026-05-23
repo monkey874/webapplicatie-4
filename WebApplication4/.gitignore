@@ -1,0 +1,31 @@
+﻿# Build output
+bin/
+obj/
+
+# Rider / JetBrains
+.idea/
+*.DotSettings.user
+
+# VS / MSBuild cache files
+*.AssemblyInfoInputs.cache
+*.CoreCompileInputs.cache
+*.FileListAbsolute.txt
+
+# Compiled binaries
+*.dll
+*.exe
+*.pdb
+
+# SourceLink
+*.sourcelink.json
+
+# User-specific files
+*.user
+*.userprefs
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
