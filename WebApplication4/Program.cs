@@ -1,5 +1,6 @@
 using WebApplication4.custumDebugger;
 using WebApplication4.TrafficLight;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,7 +19,14 @@ builder.Services.AddCors(options =>
 
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "stoplicht Systeem",   
+        Version = "v1"
+    });
+});
 
 var app = builder.Build();
 
