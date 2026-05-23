@@ -32,7 +32,7 @@ if (app.Environment.IsDevelopment())
 }
 
 
-var worker = new worker();
+var worker = new Worker();
 _ = worker.StartAsync();
 app.MapControllers();
 app.Run();

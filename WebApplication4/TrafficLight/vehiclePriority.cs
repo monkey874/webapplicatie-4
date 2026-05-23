@@ -6,16 +6,16 @@ using System.Text.Json;
 
 public class vehiclePriority
 {
-    public (string[] vehiclePriorityList, string[] vehiclesnamesArray ) loadVehiclePriority()
+    private (string[] vehiclePriorityList, string[] vehiclesnamesArray ) LoadVehiclePriority()
     {
         var test = new JsonLoader.JsonLoader();
-        var vehicleInfo = test.LoadJsonFiles("vechileInfo.json");
+        var vehicleInfo = JsonLoader.JsonLoader.LoadJsonFiles("vechileInfo.json");
         GetVehicleInfo data = JsonSerializer.Deserialize<GetVehicleInfo>(vehicleInfo);
 
         List<string> vehiclesnames = new List<string>();
         List<string> vehiclesPriority = new List<string>();
         
-        foreach (var i in data.VehicleInfo)
+        foreach (var i in data?.VehicleInfo)
         {
             vehiclesnames.Add(i.vehicleName);
             vehiclesPriority.Add(i.vehiclePriority);
@@ -29,7 +29,7 @@ public class vehiclePriority
     public void checkVehiclePriority(string vehicleName)
     {
         var testvehicle = vehicleName;
-        var vehicleInfo = loadVehiclePriority();
+        var vehicleInfo = LoadVehiclePriority();
         var vehicleInfoArray = vehicleInfo.vehiclesnamesArray;
         var VehicleInofArrayPriority = vehicleInfo.vehiclePriorityList;
         if (vehicleInfoArray.Contains(testvehicle))

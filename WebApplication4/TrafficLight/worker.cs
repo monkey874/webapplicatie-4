@@ -2,7 +2,7 @@
 using WebApplication4.TrafficLight.sort;
 namespace WebApplication4.TrafficLight;
 
-public class worker
+public class Worker
 {
     public async Task StartAsync()
     {
@@ -11,13 +11,14 @@ public class worker
             Console.WriteLine("taak word uitgevoerd");
             if (taskManeger.Queue.TryDequeue(out var task))
             {
+                
                 var jsonDoc = JsonDocument.Parse(task);
                 var data = jsonDoc.RootElement;
+               
 
                 var post = new PostRequest();
-                var ontvangen = new sorter();
-                var (on, of) = ontvangen.Laod(data);
-                Console.WriteLine("vanaf hier");
+                var ontvangen = new Sorter();
+                var (on, of) = Sorter.Laod(data);
                 foreach (var I in of)
                 {
                     var (
@@ -25,23 +26,24 @@ public class worker
                         TrafficLightGreenTime,
                         trafficLightsRelationshipOff,
                         trafficeLightsRelationshipOn
-                        ) = ontvangen.generatorSort(data, I);
+                        ) = Sorter.GeneratorSort(data, I);
 
-                    double[] trafficeLightOff = trafficLightsRelationshipOff.ToArray();
-                    double[] trafficeLightOn = trafficeLightsRelationshipOn.ToArray();
+                    var trafficeLightOff = trafficLightsRelationshipOff.ToArray();
+                    var trafficeLightOn = trafficeLightsRelationshipOn.ToArray();
 
-                    var test = new createJson();
+                    var test = new CreateJson();
 
-                    string json = test.generateJsonStructure(trafficeLightOff, trafficeLightOn);
-
+                    var json = CreateJson.GenerateJsonStructure(trafficeLightOff, trafficeLightOn);
+                    Console.WriteLine(json);
                     var obj = JsonSerializer.Deserialize<object>(json);
                     var pretty = JsonSerializer.Serialize(obj, new JsonSerializerOptions
                     {
                         WriteIndented = true
                     });
 
+                    
                     Console.WriteLine(pretty);
-                    string result = await post.SendAsync("http://172.16.48.5dd8:5501/post", pretty);
+                    var result = await post.SendAsync("172.16.48.188", pretty);
 
 
                     await Task.Delay(TrafficLightGreenTime[0] * 1000);
