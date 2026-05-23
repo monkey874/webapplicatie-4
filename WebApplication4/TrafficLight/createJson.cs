@@ -22,7 +22,7 @@ public class CreateJson
             data.messages.Add(new sendMessages()
             {
                 type = "trafficLightState",
-                message = new sendmessageContent
+                message = new sendMessageContent
                 {
                     id = item,
                     state = "red",
@@ -35,7 +35,7 @@ public class CreateJson
             data.messages.Add(new sendMessages()
             {
                 type = "trafficLightState",
-                message = new sendmessageContent
+                message = new sendMessageContent
                 {
                     id = item,
                     state = "green",

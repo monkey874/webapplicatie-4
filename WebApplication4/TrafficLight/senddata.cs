@@ -22,7 +22,7 @@ public class PostRequest
         {
             Console.WriteLine("⏳ Versturen van POST request...");
 
-            string json = JsonSerializer.Serialize(payload);
+            var json = JsonSerializer.Serialize(payload);
 
             var response = await _client.PostAsync(
                 url,
@@ -35,7 +35,7 @@ public class PostRequest
                 return null;
             }
 
-            string responseText = await response.Content.ReadAsStringAsync();
+            var responseText = await response.Content.ReadAsStringAsync();
 
             Console.WriteLine("✅ Server antwoord ontvangen!");
             return responseText;
@@ -53,7 +53,7 @@ public class PostRequest
         }
         catch (Exception ex)
         {
-            Console.WriteLine("⛔ Onbekende fout:");
+            Console.WriteLine("Onbekende fout:");
             Console.WriteLine(ex.Message);
             return null;
         }
