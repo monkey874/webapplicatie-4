@@ -1,3 +1,4 @@
+using WebApplication4.custumDebugger;
 using WebApplication4.TrafficLight;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,7 +23,7 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 app.UseCors("AllowAll");
-
+CustumDebugger.Debugger(1, "Programma word opgestart" );
 
 if (app.Environment.IsDevelopment())
 {
