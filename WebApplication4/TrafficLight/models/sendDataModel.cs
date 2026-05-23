@@ -12,10 +12,10 @@ namespace WebApplication4.TrafficLight.models;
     {
         [JsonPropertyName("Type")]
         public  required string type  { get; init; }
-        public  required sendmessageContent message  { get; init; } 
+        public  required sendMessageContent message  { get; init; } 
     }
 
-    public class sendmessageContent
+    public class sendMessageContent
     {
         public required double id { get; init; }
         public required string state { get; init; }
