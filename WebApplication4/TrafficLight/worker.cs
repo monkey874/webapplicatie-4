@@ -1,49 +1,116 @@
 ﻿using System.Text.Json;
 using WebApplication4.TrafficLight.sort;
+
 namespace WebApplication4.TrafficLight;
 
 public class Worker
 {
+    // Eén gedeelde HttpClient voorkomt socket-uitputting
+    private static readonly HttpClient client = new HttpClient
+    {
+        Timeout = TimeSpan.FromSeconds(5)
+    };
+
     public async Task StartAsync()
     {
         while (true)
         {
-            Console.WriteLine("taak word uitgevoerd");
-            if (taskManeger.Queue.TryDequeue(out var task))
+            Console.WriteLine("taak wordt uitgevoerd");
+            if (!taskManeger.Queue.TryDequeue(out var task) || string.IsNullOrWhiteSpace(task))
             {
+                await Task.Delay(10000);
+                continue;
+            }
+            
                 
-                var jsonDoc = JsonDocument.Parse(task);
-                var data = jsonDoc.RootElement;
-               
+            
+            JsonDocument jsonDoc;
+            try
+            {
+                jsonDoc = JsonDocument.Parse(task);
+            }
+            catch
+            {
+                Console.WriteLine("Ongeldige JSON ontvangen");
+                continue;
+            }
 
-                var post = new PostRequest();
-                var ontvangen = new Sorter();
-                var (on, of) = Sorter.Laod(data);
+            
+            var data = jsonDoc.RootElement;
+            var (on, of) = Sorter.Laod(data);
+
+            foreach (var I in of)
+            {
+                var (
+                    trafficLightsNames1,
+                    TrafficLightGreenTime,
+                    trafficLightsRelationshipOff,
+                    trafficeLightsRelationshipOn
+                ) = Sorter.GeneratorSort(data, I);
+
+                var trafficeLightOff = trafficLightsRelationshipOff.ToArray();
+                var trafficeLightOn = trafficeLightsRelationshipOn.ToArray();
+
                 
+                var json = CreateJson.GenerateJsonStructure(trafficeLightOff, trafficeLightOn);
                 
-                foreach (var I in of)
+                var pretty = JsonSerializer.Serialize(
+                    JsonSerializer.Deserialize<object>(json),
+                    new JsonSerializerOptions { WriteIndented = true }
+                );
+
+                Console.WriteLine(pretty);
+
+                if ("bas" == "bas")
                 {
-                    var (
-                        trafficLightsNames1,
-                        TrafficLightGreenTime,
-                        trafficLightsRelationshipOff,
-                        trafficeLightsRelationshipOn
-                        ) = Sorter.GeneratorSort(data, I);
+                    taskManeger2.Queue1.Enqueue(pretty);
 
-                    var trafficeLightOff = trafficLightsRelationshipOff.ToArray();
-                    var trafficeLightOn = trafficeLightsRelationshipOn.ToArray();
-                    
-
-                    var json = CreateJson.GenerateJsonStructure(trafficeLightOff, trafficeLightOn);
-                    
-                    var obj = JsonSerializer.Deserialize<object>(json);
-                    var pretty = JsonSerializer.Serialize(obj, new JsonSerializerOptions
+                    // GET request met timeout + foutafhandeling
+                    try
                     {
-                        WriteIndented = true
-                    });
+                        var response = await client.GetAsync("http://172.16.48.224:5280/recieve");
 
+                        if (!response.IsSuccessStatusCode)
+                        {
+                            Console.WriteLine("Server gaf geen geldige response");
+                           
+                        }
+
+                        string text = await response.Content.ReadAsStringAsync();
+                        Console.WriteLine(text);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Fout bij GET: " + ex.Message);
+                       
+                    }
                     
-                    Console.WriteLine(pretty);
+                
+
+                    // Wachttijd groen licht
+                    Console.WriteLine("GreenTime gevonden: " + TrafficLightGreenTime[0]);
+                    await Task.Delay(TrafficLightGreenTime[0] * 1000);
+
+                    // Licht uit JSON
+                    var json1 = CreateJson.trafficLightOff(trafficeLightOn);
+
+                    try
+                    {
+                        await client.GetAsync(
+                            "http://172.16.48.244:5280/receive");
+
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Fout bij POST: " + ex.Message);
+                    }
+
+                    await Task.Delay(10000);
+                }
+                else
+                {
+                    var post = new PostRequest();
+
                     var result = await post.SendAsync("http://172.16.48.244:5050/receive", pretty);
 
                     
@@ -59,13 +126,9 @@ public class Worker
                         WriteIndented = true
                     });
                     var result1 = await post.SendAsync("http://172.16.48.244:5050/receive", pretty1);
-                    await Task.Delay(10000);
+                   
                 }
-            }
-            else
-            {
-                await Task.Delay(1000);
-            }
+            } 
         }
     }
 }
