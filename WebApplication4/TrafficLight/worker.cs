@@ -1,4 +1,6 @@
 ﻿using System.Text.Json;
+using System.Text;
+using System.Text.Json;
 using WebApplication4.TrafficLight.sort;
 
 namespace WebApplication4.TrafficLight;
@@ -61,7 +63,7 @@ public class Worker
 
                 Console.WriteLine(pretty);
 
-                if ("bas" == "bas")
+                if ("bas" == "as")
                 {
                     taskManeger2.Queue1.Enqueue(pretty);
 
@@ -111,22 +113,26 @@ public class Worker
                 {
                     var post = new PostRequest();
 
-                    var result = await post.SendAsync("http://172.16.48.244:5050/receive", pretty);
+// Eerste POST
+                    var objOn = JsonSerializer.Deserialize<object>(
+                        CreateJson.GenerateJsonStructure(trafficeLightOff, trafficeLightOn)
+                    );
+                    var result = await post.SendAsync("http://192.168.2.8:5501/post", objOn);
 
-                    
                     Console.WriteLine("GreenTime gevonden: " + TrafficLightGreenTime[0]);
                     await Task.Delay(TrafficLightGreenTime[0] * 1000);
+
+// Tweede POST
+                    var objOff = JsonSerializer.Deserialize<object>(
+                        CreateJson.trafficLightOff(trafficeLightOn)
+                    );
+                    var result1 = await post.SendAsync("http://192.168.2.8:5501/post", objOff);
+
                     
-                    
-                    
-                    var json1  = CreateJson.trafficLightOff(trafficeLightOn);
-                    var obj1 = JsonSerializer.Deserialize<object>(json1);
-                    var pretty1 = JsonSerializer.Serialize(obj1, new JsonSerializerOptions
-                    {
-                        WriteIndented = true
-                    });
-                    var result1 = await post.SendAsync("http://172.16.48.244:5050/receive", pretty1);
-                   
+
+
+
+        
                 }
             } 
         }
