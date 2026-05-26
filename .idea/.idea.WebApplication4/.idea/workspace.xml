@@ -6,19 +6,7 @@
     <projectFile profileName="https">WebApplication4/WebApplication4.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c3b66f7f-d54f-494e-b121-b328a8950b09" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/WebApplication4/bin/Debug/net8.0/WebApplication4.dll" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication4/bin/Debug/net8.0/WebApplication4.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication4/bin/Debug/net8.0/WebApplication4.exe" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication4/bin/Debug/net8.0/WebApplication4.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication4/bin/Debug/net8.0/WebApplication4.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication4/bin/Debug/net8.0/WebApplication4.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication4/obj/Debug/net8.0/WebApplication4.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication4/obj/Debug/net8.0/WebApplication4.AssemblyInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication4/obj/Debug/net8.0/WebApplication4.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication4/obj/Debug/net8.0/WebApplication4.AssemblyInfoInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication4/obj/Debug/net8.0/WebApplication4.dll" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication4/obj/Debug/net8.0/WebApplication4.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication4/obj/Debug/net8.0/WebApplication4.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication4/obj/Debug/net8.0/WebApplication4.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication4/obj/Debug/net8.0/WebApplication4.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication4/obj/Debug/net8.0/WebApplication4.sourcelink.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication4/obj/Debug/net8.0/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication4/obj/Debug/net8.0/apphost.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication4/obj/Debug/net8.0/ref/WebApplication4.dll" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication4/obj/Debug/net8.0/ref/WebApplication4.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication4/obj/Debug/net8.0/refint/WebApplication4.dll" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication4/obj/Debug/net8.0/refint/WebApplication4.dll" afterDir="false" />
-    </list>
+    <list default="true" id="c3b66f7f-d54f-494e-b121-b328a8950b09" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -170,7 +158,7 @@
       <workItem from="1779267006854" duration="374000" />
       <workItem from="1779345518232" duration="11254000" />
       <workItem from="1779362232889" duration="9671000" />
-      <workItem from="1779516920578" duration="10512000" />
+      <workItem from="1779516920578" duration="10786000" />
     </task>
     <task id="LOCAL-00001" summary="het project webapplicatie 4">
       <option name="closed" value="true" />
@@ -348,7 +336,15 @@
       <option name="project" value="LOCAL" />
       <updated>1779532980193</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="laaste update">
+      <option name="closed" value="true" />
+      <created>1779533607316</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1779533607316</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -390,7 +386,8 @@
     <MESSAGE value="update: Heb De laatste vijf bestanden nagekeken dit moet nu in orde zijn." />
     <MESSAGE value="Update: Overige debug files die worden gegerereed door het runnen van het project. Als het goed is moet de .gitinoger dit nu tegen houden." />
     <MESSAGE value="update: veilige versie" />
-    <option name="LAST_COMMIT_MESSAGE" value="update: veilige versie" />
+    <MESSAGE value="laaste update" />
+    <option name="LAST_COMMIT_MESSAGE" value="laaste update" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

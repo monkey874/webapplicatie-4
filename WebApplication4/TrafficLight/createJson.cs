@@ -7,17 +7,17 @@ namespace WebApplication4.TrafficLight;
 
 public class CreateJson
 {
-    public static string GenerateJsonStructure(double[] trafficeLightOff, double[] trafficeLightOn )
+    public static string GenerateJsonStructure(double[] trafficeLightOff, double[] trafficeLightOn)
     {
-        
+
 
         var data = new RootSendMessages
         {
             timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
             messages = []
         };
-        
-        
+
+
         foreach (var item in trafficeLightOff)
         {
             data.messages.Add(new sendMessages()
@@ -31,7 +31,7 @@ public class CreateJson
                 }
             });
         }
-        
+
         foreach (var item in trafficeLightOn)
         {
             data.messages.Add(new sendMessages()
@@ -44,7 +44,7 @@ public class CreateJson
                 }
             });
         }
-        
+
         var option = new JsonSerializerOptions
         {
             WriteIndented = true
@@ -52,5 +52,37 @@ public class CreateJson
 
         var json = JsonSerializer.Serialize(data, option);
         return json;
+    }
+
+    public static string trafficLightOff(double[] trafficeLightOff)
+    {
+        var data = new RootSendMessages
+        {
+            timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+            messages = []
+        };
+
+        foreach (var item in trafficeLightOff)
+        {
+            data.messages.Add(new sendMessages()
+            {
+                type = "trafficLightState",
+                message = new sendMessageContent
+                {
+                    id = item.ToString(CultureInfo.InvariantCulture),
+
+                    state = "red",
+                }
+            });
+        }
+
+        var option = new JsonSerializerOptions
+        {
+            WriteIndented = true
+        };
+
+        var json = JsonSerializer.Serialize(data, option);
+        return json;
+
     }
 }

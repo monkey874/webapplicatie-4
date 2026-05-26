@@ -44,11 +44,22 @@ public class Worker
 
                     
                     Console.WriteLine(pretty);
-                    var result = await post.SendAsync("172.16.48.188", pretty);
+                    var result = await post.SendAsync("http://172.16.48.244:5050/receive", pretty);
 
                     
                     Console.WriteLine("GreenTime gevonden: " + TrafficLightGreenTime[0]);
                     await Task.Delay(TrafficLightGreenTime[0] * 1000);
+                    
+                    
+                    
+                    var json1  = CreateJson.trafficLightOff(trafficeLightOn);
+                    var obj1 = JsonSerializer.Deserialize<object>(json1);
+                    var pretty1 = JsonSerializer.Serialize(obj1, new JsonSerializerOptions
+                    {
+                        WriteIndented = true
+                    });
+                    var result1 = await post.SendAsync("http://172.16.48.244:5050/receive", pretty1);
+                    await Task.Delay(10000);
                 }
             }
             else
