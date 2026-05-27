@@ -21,7 +21,7 @@ public class Worker
             if (!taskManeger.Queue.TryDequeue(out var task) || string.IsNullOrWhiteSpace(task))
             {
                 await Task.Delay(10000);
-                continue;
+                
             }
             
                 
@@ -29,6 +29,7 @@ public class Worker
             JsonDocument jsonDoc;
             try
             {
+                Console.WriteLine(task);
                 jsonDoc = JsonDocument.Parse(task);
             }
             catch
@@ -36,9 +37,12 @@ public class Worker
                 Console.WriteLine("Ongeldige JSON ontvangen");
                 continue;
             }
+            
 
             
             var data = jsonDoc.RootElement;
+            Console.WriteLine("dit is data");
+            Console.WriteLine(data);
             var (on, of) = Sorter.Laod(data);
 
             foreach (var I in of)
@@ -49,17 +53,18 @@ public class Worker
                     trafficLightsRelationshipOff,
                     trafficeLightsRelationshipOn
                 ) = Sorter.GeneratorSort(data, I);
-
+                
                 var trafficeLightOff = trafficLightsRelationshipOff.ToArray();
                 var trafficeLightOn = trafficeLightsRelationshipOn.ToArray();
 
-                
-                var json = CreateJson.GenerateJsonStructure(trafficeLightOff, trafficeLightOn);
+              var json = train(trafficLightsNames1.ToArray(), trafficeLightOff, trafficeLightOn);
+
                 
                 var pretty = JsonSerializer.Serialize(
                     JsonSerializer.Deserialize<object>(json),
                     new JsonSerializerOptions { WriteIndented = true }
                 );
+                
 
                 Console.WriteLine(pretty);
 
@@ -115,26 +120,51 @@ public class Worker
 
 // Eerste POST
                     var objOn = JsonSerializer.Deserialize<object>(
-                        CreateJson.GenerateJsonStructure(trafficeLightOff, trafficeLightOn)
+                        json
                     );
                     var result = await post.SendAsync("http://192.168.2.8:5501/post", objOn);
 
                     Console.WriteLine("GreenTime gevonden: " + TrafficLightGreenTime[0]);
                     await Task.Delay(TrafficLightGreenTime[0] * 1000);
 
-// Tweede POST
+// Tweede POST      
+                    if(trafficLightsNames1[0] != "train-1")
+                    {
+                        
                     var objOff = JsonSerializer.Deserialize<object>(
                         CreateJson.trafficLightOff(trafficeLightOn)
                     );
                     var result1 = await post.SendAsync("http://192.168.2.8:5501/post", objOff);
+                    }
+                    else
+                    {
+                        Console.WriteLine("ik ben de trein");
 
-                    
-
-
-
-        
+                        var objOff = JsonSerializer.Deserialize<object>(
+                            CreateJson1.trainJsonopeningCate(trafficLightsNames1[0])
+                        );
+                        var result1 = await post.SendAsync("http://192.168.2.8:5501/post", objOff);
+                    }
                 }
             } 
         }
     }
+
+    public string train(string[] trafficLightsNames1, double[] trafficeLightOff, double[] trafficeLightOn)
+    {
+        if (trafficLightsNames1[0] != "train-1")
+        {
+            var json = CreateJson.GenerateJsonStructure(trafficeLightOff, trafficeLightOn);
+            return json;
+        }
+        else
+        {
+            Console.WriteLine("er komt een trein");
+            var json = CreateJson1.trainJsonClossingCate(trafficLightsNames1[0]);
+            Console.WriteLine("dit is de json" + json);
+            return json;
+        }
+    }
+
+    
 }

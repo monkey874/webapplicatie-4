@@ -12,7 +12,7 @@ namespace WebApplication4.TrafficLight.models;
     {
         [JsonPropertyName("traffic light")]
         
-        public required double TrafficLight { get; set; }
+        public required string TrafficLight { get; set; }
         
         [JsonPropertyName("TrafficLightGreenTime")]
         public int TrafficLightGreenTime { get; set; }
