@@ -7,7 +7,6 @@ namespace WebApplication4.TrafficLight;
 
 public class Worker
 {
-    // Eén gedeelde HttpClient voorkomt socket-uitputting
     private static readonly HttpClient client = new HttpClient
     {
         Timeout = TimeSpan.FromSeconds(5)
@@ -122,7 +121,7 @@ public class Worker
                     var objOn = JsonSerializer.Deserialize<object>(
                         json
                     );
-                    var result = await post.SendAsync("http://192.168.2.8:5501/post", objOn);
+                    var result = await post.SendAsync("http://172.16.48.223:5501/post", objOn);
 
                     Console.WriteLine("GreenTime gevonden: " + TrafficLightGreenTime[0]);
                     await Task.Delay(TrafficLightGreenTime[0] * 1000);
@@ -134,7 +133,7 @@ public class Worker
                     var objOff = JsonSerializer.Deserialize<object>(
                         CreateJson.trafficLightOff(trafficeLightOn)
                     );
-                    var result1 = await post.SendAsync("http://192.168.2.8:5501/post", objOff);
+                    var result1 = await post.SendAsync("http://172.16.48.223:5501/post", objOff);
                     }
                     else
                     {
@@ -143,7 +142,7 @@ public class Worker
                         var objOff = JsonSerializer.Deserialize<object>(
                             CreateJson1.trainJsonopeningCate(trafficLightsNames1[0])
                         );
-                        var result1 = await post.SendAsync("http://192.168.2.8:5501/post", objOff);
+                        var result1 = await post.SendAsync("http://172.16.48.223:5501/post", objOff);
                     }
                 }
             } 

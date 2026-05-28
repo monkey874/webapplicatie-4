@@ -43,18 +43,18 @@ public class CreateJson1
             messages = []
         };
 
-        foreach (var item in TrainName)
-        {
+        
+        
             data.messages.Add(new sendMessages()
             {
                 type = "crossingGate",
                 message = new sendMessageContent
                 {
-                    id = item.ToString(),
+                    id = TrainName,
                     state = "opening",
                 }
             });
-        }
+        
         
         var option = new JsonSerializerOptions
         {

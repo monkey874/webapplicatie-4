@@ -2,7 +2,7 @@
 public class RootGetMessages
 {
     public required List<GetMessages> messages { get; init; }
-    public required string timestamp { get; init; }
+    public  string? timestamp { get; init; }
 }
 
 public class GetMessages
